@@ -6,31 +6,30 @@ import os
 from datetime import datetime
 from twilio.rest import Client
 
-# Twilio account SID and auth token
+
 account_sid = "your ACCOUNT SID"
 auth_token = "your AUTHORISED TOKEN"
-twilio_phone_number = "your twilio PHONE NUMBER"  # Replace with your Twilio phone number
+twilio_phone_number = "your twilio PHONE NUMBER" 
 
 # Google Drive link to the training images folder
 # training_images_drive_link = "https://drive.google.com/drive/folders/XXXXXXXXXXXXX"
 
-# Local path to store the downloaded training images
 training_images_folder = "training_images"
 
-# Create the training images folder if it doesn't exist
+
 if not os.path.exists(training_images_folder):
     os.makedirs(training_images_folder)
 
 # Download the training images from Google Drive
 # gdown.download(training_images_drive_link, output=training_images_folder, quiet=False)
 
-# Load known faces
+
 known_face_encodings = []
 known_face_names = []
 
-# Iterate over the training images folder
+
 for file in os.listdir(training_images_folder):
-    if file.endswith(".jpg") or file.endswith(".png"):  # Skip non-image files
+    if file.endswith(".jpg") or file.endswith(".png"):  
         image_path = os.path.join(training_images_folder, file)
         image = face_recognition.load_image_file(image_path)
         encoding = face_recognition.face_encodings(image)[0]
